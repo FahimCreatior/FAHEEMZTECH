@@ -18,7 +18,15 @@
     <link rel="apple-touch-icon" href="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg">
     <link rel="icon" type="image/jpg" href="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg">
     <title>Faheemz Tech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Critical CSS only */
+        .hamburger,
+        .menu,
+        .overlay {
+            display: none;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -501,13 +509,14 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Overlay -->
     <div class="overlay"></div>
     
     <!-- Hamburger Menu -->
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+    <div class="hamburger" aria-label="Toggle menu">
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
@@ -544,6 +553,9 @@
         <div id="date">Wednesday, January 1, 2025</div>
     </div>
 
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+
     <div class="contact-text">Contact the Developer through</div>
     <div class="social-icons">
         <a href="https://wa.me/qr/M4JZQ6CRXW3QJ1" target="_blank" class="social-icon">
@@ -556,190 +568,12 @@
     </div>
 
     <footer>
-        2024 FAHEEMZTECH. All rights reserved.
+        2024/2025 FAHEEMZ. All rights reserved.
     </footer>
 
     <script>
-        function updateTime() {
-            const options = {
-                timeZone: 'Africa/Nairobi',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
-
-            const dateOptions = {
-                timeZone: 'Africa/Nairobi',
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
-
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', options);
-            const dateString = now.toLocaleDateString('en-US', dateOptions);
-
-            document.getElementById('clock').textContent = timeString;
-            document.getElementById('date').textContent = dateString;
-        }
-
-        updateTime();
-        setInterval(updateTime, 1000);
-
-        // PWA Installation
-        let deferredPrompt;
-        const installButton = document.getElementById('installButton');
-        const installContainer = document.getElementById('installContainer');
-        const isWindows = navigator.userAgent.includes('Windows');
-        const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-        const isEdge = /Edg/.test(navigator.userAgent);
-
-        // Show Windows-specific UI for Chrome/Edge
-        if (isWindows && (isChrome || isEdge)) {
-            // Show Windows-specific instructions
-            const windowsSteps = document.querySelector('.windows-steps');
-            if (windowsSteps) {
-                windowsSteps.style.display = 'block';
-            }
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                // Show install button
-                if (installContainer) {
-                    installContainer.style.display = 'block';
-                    
-                    // Auto-show the prompt if user hasn't seen it before
-                    if (!localStorage.getItem('installPromptShown')) {
-                        setTimeout(() => {
-                            if (deferredPrompt && installContainer) {
-                                installContainer.style.display = 'block';
-                                localStorage.setItem('installPromptShown', 'true');
-                            }
-                        }, 5000);
-                    }
-                }
-            });
-
-            if (installButton) {
-                installButton.addEventListener('click', async () => {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        console.log(`User response to the install prompt: ${outcome}`);
-                        if (outcome === 'accepted') {
-                            console.log('User accepted the install prompt');
-                            if (installContainer) {
-                                installContainer.style.display = 'none';
-                            }
-                        } else {
-                            console.log('User dismissed the install prompt');
-                        }
-                        deferredPrompt = null;
-                    }
-                });
-            }
-
-            window.addEventListener('appinstalled', () => {
-                console.log('PWA was installed');
-                if (installContainer) {
-                    installContainer.style.display = 'none';
-                }
-                // Optional: Track successful installation
-                if (window.gtag) {
-                    gtag('event', 'install', {
-                        'event_category': 'PWA',
-                        'event_label': 'Install Success'
-                    });
-                }
-            });
-        }
-
-        // For iOS devices
-        const isIos = () => {
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            return /iphone|ipad|ipod/.test(userAgent);
-        };
-
-        // Check if in standalone mode (already installed)
-        const isInStandaloneMode = () => 
-            ('standalone' in window.navigator) && (window.navigator.standalone);
-
-        // Show install prompt for iOS
-        if (isIos() && !isInStandaloneMode()) {
-            const iosInstallPrompt = document.createElement('div');
-            iosInstallPrompt.innerHTML = `
-                <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a2e; 
-                    color: white; padding: 15px; text-align: center; z-index: 1000;">
-                    <p>Install Faheemz Tech for the best experience</p>
-                    <p>Tap <i class="fas fa-share" style="transform: rotate(90deg) translateY(3px);"></i> 
-                    then 'Add to Home Screen'</p>
-                </div>
-            `;
-            document.body.appendChild(iosInstallPrompt);
-        }
-
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
-            });
-        }
-
-        // Menu Toggle Functionality
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            const background = document.querySelector('.video-background');
-            const overlay = document.querySelector('.overlay');
-            
-            const isActive = menu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            background.classList.toggle('video-blur');
-            
-            if (isActive) {
-                overlay.style.display = 'block';
-                setTimeout(() => overlay.style.opacity = '1', 10);
-                document.body.style.overflow = 'hidden';
-            } else {
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            const overlay = document.querySelector('.overlay');
-            
-            if (!menu.contains(e.target) && !hamburger.contains(e.target) && menu.classList.contains('active')) {
-                toggleMenu();
-            }
-            
-            // Close menu when clicking overlay
-            if (e.target === overlay) {
-                toggleMenu();
-            }
-        });
-        
-        // Close menu when pressing Escape key
-        document.addEventListener('keydown', function(e) {
-            const menu = document.querySelector('.menu');
-            if (e.key === 'Escape' && menu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
+        // All JavaScript has been moved to js/main.js
+        // This file is intentionally left empty
     </script>
 </body>
 </html>
