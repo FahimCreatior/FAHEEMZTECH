@@ -1,7 +1,7 @@
 const CACHE_NAME = 'faheemz-tech-v1';
 const ASSETS_TO_CACHE = [
   '/',
-  '/mainpage.html',
+  '/index.html',
   '/movies.html',
   '/movies2.html',
   '/football.html',
