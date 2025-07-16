@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square70x70logo src="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg"/>
+      <square150x150logo src="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg"/>
+      <square310x310logo src="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg"/>
+      <TileColor>#1a1a2e</TileColor>
+    </tile>
+    <window>
+      <desktop:pin>
+        <desktop:size>small</desktop:size>
+        <desktop:size>medium</desktop:size>
+        <desktop:size>large</desktop:size>
+      </desktop:pin>
+    </window>
+  </msapplication>
+</browserconfig>
