@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="Faheemz Tech - Your ultimate entertainment platform">
+    <meta name="msapplication-TileColor" content="#1a1a2e">
+    <meta name="msapplication-TileImage" content="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <meta name="msapplication-starturl" content="/index.html">
+    <meta name="application-name" content="Faheemz Tech">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg">
+    <link rel="icon" type="image/jpg" href="https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg">
     <title>Faheemz Tech</title>
     <style>
         * {
@@ -54,6 +63,33 @@
         .install-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .install-btn .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        
+        .install-hint {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+        }
+        
+        .windows-steps p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .windows-steps i {
+            color: #e50914;
         }
 
         .install-btn i {
@@ -219,8 +255,18 @@
     <div class="video-background"></div>
 
     <div class="content">
-        <div id="installContainer" style="display: none; margin: 20px 0;">
-            <button id="installButton" class="install-btn">Install Faheemz Tech App</button>
+        <h1>Welcome to Faheemz Tech</h1>
+        <p>Your ultimate entertainment destination</p>
+        <div id="installContainer" style="display: none; text-align: center; margin: 20px 0;">
+            <button id="installButton" class="install-btn">
+                <i class="fas fa-download"></i> Install Faheemz Tech
+                <span class="badge">PWA</span>
+            </button>
+            <p class="install-hint">For the best experience, install our app on your device</p>
+            <div class="windows-steps" style="display: none; margin-top: 15px; font-size: 0.9em;">
+                <p><i class="fas fa-desktop"></i> Click "Install" in the browser prompt</p>
+                <p><i class="fas fa-check-circle"></i> Launch from your Start menu or desktop</p>
+            </div>
         </div>
         <div id="clock">00:00:00</div>
         <div id="date">Wednesday, January 1, 2025</div>
@@ -274,91 +320,45 @@
         let deferredPrompt;
         const installButton = document.getElementById('installButton');
         const installContainer = document.getElementById('installContainer');
+        const isWindows = navigator.userAgent.includes('Windows');
+        const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        const isEdge = /Edg/.test(navigator.userAgent);
 
-        // Show install button when PWA can be installed
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installContainer.style.display = 'block';
-        });
-
-        // Install button click handler
-        installButton.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                    installContainer.style.display = 'none';
+        // Show Windows-specific UI for Chrome/Edge
+        if (isWindows && (isChrome || isEdge)) {
+            // Show Windows-specific instructions
+            const windowsSteps = document.querySelector('.windows-steps');
+            if (windowsSteps) {
+                windowsSteps.style.display = 'block';
+            }
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                // Show install button
+                if (installContainer) {
+                    installContainer.style.display = 'block';
+                    
+                    // Auto-show the prompt if user hasn't seen it before
+                    if (!localStorage.getItem('installPromptShown')) {
+                        setTimeout(() => {
+                            if (deferredPrompt && installContainer) {
+                                installContainer.style.display = 'block';
+                                localStorage.setItem('installPromptShown', 'true');
+                            }
+                        }, 5000);
+                    }
                 }
-                deferredPrompt = null;
-            }
-        });
-
-        // Check if app is already installed
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA was installed');
-            installContainer.style.display = 'none';
-        });
-
-        // For iOS devices
-        const isIos = () => {
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            return /iphone|ipad|ipod/.test(userAgent);
-        };
-
-        // Check if in standalone mode (already installed)
-        const isInStandaloneMode = () => 
-            ('standalone' in window.navigator) && (window.navigator.standalone);
-
-        // Show install prompt for iOS
-        if (isIos() && !isInStandaloneMode()) {
-            const iosInstallPrompt = document.createElement('div');
-            iosInstallPrompt.innerHTML = `
-                <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a2e; 
-                    color: white; padding: 15px; text-align: center; z-index: 1000;">
-                    <p>Install Faheemz Tech for the best experience</p>
-                    <p>Tap <i class="fas fa-share" style="transform: rotate(90deg) translateY(3px);"></i> 
-                    then 'Add to Home Screen'</p>
-                </div>
-            `;
-            document.body.appendChild(iosInstallPrompt);
-        }
-
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
             });
-        }
 
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            const background = document.querySelector('.video-background');
-            
-            menu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            background.classList.toggle('video-blur');
-        }
-
-        document.addEventListener('click', function(e) {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            const background = document.querySelector('.video-background');
-            
-            if (!menu.contains(e.target) && !hamburger.contains(e.target) && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-                hamburger.classList.remove('active');
-                background.classList.remove('video-blur');
-            }
-        });
-    </script>
-</body>
-</html>
+            if (installButton) {
+                installButton.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`User response to the install prompt: ${outcome}`);
+                        if (outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                            if (installContainer) {
+                                installContainer.style.display = 'none';
+                            }
+       
