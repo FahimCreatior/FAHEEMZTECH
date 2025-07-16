@@ -2,7 +2,7 @@
   "name": "Faheemz Tech",
   "short_name": "Faheemz",
   "description": "Your ultimate entertainment platform",
-  "start_url": "/mainpage.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#1a1a2e",
