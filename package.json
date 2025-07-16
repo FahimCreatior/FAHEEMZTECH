@@ -1,0 +1,28 @@
+{
+  "name": "faheemz-tech",
+  "version": "1.0.0",
+  "description": "Faheemz Tech - Entertainment Platform",
+  "main": "mainpage.html",
+  "scripts": {
+    "start": "http-server -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "entertainment",
+    "streaming",
+    "movies",
+    "music",
+    "sports",
+    "pwa"
+  ],
+  "author": "Faheemz Tech",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ]
+}
