@@ -7,6 +7,7 @@
   "background_color": "#1a1a2e",
   "theme_color": "#1a1a2e",
   "orientation": "portrait",
+  "categories": ["entertainment", "streaming", "movies", "music", "sports"],
   "icons": [
     {
       "src": "https://i.ibb.co/GfZqhFx8/FAHEEMZTECH.jpg",
@@ -28,7 +29,25 @@
       "type": "image/jpg"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Movies",
+      "url": "/movies.html",
+      "description": "Browse and stream movies"
+    },
+    {
+      "name": "Music",
+      "url": "/music.html",
+      "description": "Listen to music"
+    },
+    {
+      "name": "Football",
+      "url": "/football.html",
+      "description": "Watch live football"
+    }
+  ],
   "prefer_related_applications": false,
   "related_applications": [],
-  "scope": "/"
+  "scope": "/",
+  "id": "/"
 }
