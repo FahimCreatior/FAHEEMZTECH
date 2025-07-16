@@ -66,6 +66,17 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Add click event listener to hamburger menu
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling up to document
+            toggleMenu();
+        });
+    }
+});
+
 // PWA Installation
 let deferredPrompt;
 const installBtn = document.querySelector('.install-btn');
@@ -123,14 +134,3 @@ if (isIos() && !isInStandaloneMode()) {
     `;
     document.body.appendChild(iosInstallPrompt);
 }
-
-// Initialize time and update every second
-updateTime();
-setInterval(updateTime, 1000);
-
-// Show menu after page loads
-window.addEventListener('load', function() {
-    document.querySelector('.hamburger').style.display = 'flex';
-    document.querySelector('.menu').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block';
-});
