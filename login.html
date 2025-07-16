@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OGLyI4QDjOINdhYaWH-xGNlg1nF6dHANfhzZEeB1r8w" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Faheemz-Tech - Your Gateway to Technology</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Login to Faheemz-Tech - Your premier destination for technology solutions, gaming, and digital innovation. Access your account securely.">
+    <meta name="keywords" content="Faheemz-Tech, technology, login, gaming, digital solutions, tech platform">
+    <meta name="author" content="Faheemz-Tech">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Faheemz-Tech - Your Gateway to Technology">
+    <meta property="og:description" content="Login to Faheemz-Tech - Your premier destination for technology solutions, gaming, and digital innovation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faeemztec.glitch.me/login.html">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Faheemz-Tech - Your Gateway to Technology">
+    <meta name="twitter:description" content="Login to Faheemz-Tech - Your premier destination for technology solutions, gaming, and digital innovation.">
+    <meta name="twitter:url" content="https://faeemztec.glitch.me/login.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://faeemztec.glitch.me/login.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        .page {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease-out;
+        }
+
+        /* Welcome Page Styles */
+        #welcome-page {
+            background-image: url('https://cdn.glitch.global/060bf4d7-cb72-47a0-8c35-b2874509b289/Formatted%20Welcome%20Page.png?v=1733678766875');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #welcome-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .welcome-container {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            font-family: serif;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-family: serif;
+        }
+
+        .welcome-sign-in-btn {
+            display: inline-block;
+            padding: 15px 60px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Login Page Styles */
+        #login-page {
+            background-image: url('https://cdn.glitch.global/060bf4d7-cb72-47a0-8c35-b2874509b289/Blank%20login%20page.png?v=1733678755659');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: #0a0a20;
+            transform: translateX(100%);
+            z-index: 2;
+        }
+
+        #login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .login-container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .highlight {
+            color: #d4167a;
+            display: block;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 15px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-field:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .sign-in-btn {
+            background-color: #d4167a;
+            color: white;
+            padding: 15px 0;
+            border-radius: 25px;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #e71985;
+        }
+
+        .divider {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #d4167a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .signup-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .signup-link {
+            color: #d4167a;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link:hover {
+            color: #e71985;
+        }
+
+        /* Transition Classes */
+        .slide-out {
+            transform: translateX(-100%);
+        }
+
+        .slide-in {
+            transform: translateX(0) !important;
+        }
+      
+      .game-container {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .game {
+            width: 600px;
+            height: 200px;
+            border: 1px solid #7e7e7e;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+
+        #dino {
+            width: 40px;
+            height: 40px;
+            background-color: #535353;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+        }
+
+        .cactus {
+            width: 20px;
+            height: 40px;
+            background-color: #535353;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .game-over {
+            display: none;
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #535353;
+        }
+
+        .score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #535353;
+        }
+
+        .offline-message {
+            font-size: 24px;
+            color: #535353;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <!-- Welcome Page -->
+        <div class="page" id="welcome-page">
+            <div class="welcome-container">
+                <p class="welcome-text">Welcome to</p>
+                <h1 class="main-title">FAHEEMZ UNLIMITECH</h1>
+                <h2 class="subtitle">WORLD OF TECH</h2>
+                <button class="welcome-sign-in-btn" onclick="handleTransition()">Sign In</button>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div class="page" id="login-page">
+            <div class="login-container">
+                <h1 class="title">Let's Get<span class="highlight">Started!</span></h1>
+                
+                <div class="input-group">
+                    <input type="email" class="input-field" id="email" placeholder="Email Address">
+                    <input type="password" class="input-field" id="password" placeholder="Password">
+                    <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                </div>
+
+                <label class="remember-me">
+                    <input type="checkbox" id="remember">
+                    Remember for 30 days
+                </label>
+                
+                <button class="sign-in-btn" onclick="handleSignIn()">Sign In</button>
+                
+                <div class="divider">OR SIGN IN WITH</div>
+                
+                <div class="social-buttons">
+                    <div class="social-btn">
+                        <svg width="20" height="20" fill="white" viewbox="0 0 24 24">
+                            <path d="M20,4H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/>
+                        </svg>
+                    </div>
+                    <div class="social-btn">
+                        <svg width="20" height="20" fill="white" viewbox="0 0 24 24">
+                            <path d="M17.5,12c0-0.3,0-0.5-0.1-0.8h-5.4v2.5h3.1c-0.1,0.8-0.5,1.4-1,1.9v1.6h1.9C17,16.1,17.5,14.2,17.5,12z M12,18 c1.6,0,3-0.5,4-1.5l-1.9-1.5c-0.5,0.3-1.2,0.5-2.1,0.5c-1.6,0-3-1.1-3.5-2.6H6.5v1.6C7.5,16.5,9.6,18,12,18z M8.5,12 c0-0.3,0-0.5,0.1-0.8H6.5V13h2C8.5,12.7,8.5,12.3,8.5,12z M12,8.5c0.9,0,1.7,0.3,2.3,0.9l1.7-1.7C14.9,6.7,13.5,6,12,6 c-3.1,0-5.7,1.9-6.8,4.6l2,1.6C8,10.1,9.8,8.5,12,8.5z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="signup-text">
+                    DIDN'T HAVE ACCOUNT?
+                    <a href="#" class="signup-link">Sign up now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Container -->
+        <div class="game-container" id="gameContainer">
+            <div class="offline-message">No Internet Connection</div>
+            <div class="game" id="gameArea">
+                <div id="dino"></div>
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="game-over" id="gameOver">Game Over! Press Space to restart</div>
+            </div>
+            <div class="instructions">Press Space to jump</div>
+        </div>
+    </div>
+
+    <script>
+        // Default credentials
+        const DEFAULT_CREDENTIALS = {
+            email: '123456789@gmail.com',
+            password: '123456789'
+        };
+
+        // Handle sign in
+        function handleSignIn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+
+            if (email === DEFAULT_CREDENTIALS.email && password === DEFAULT_CREDENTIALS.password) {
+                alert('Login successful!');
+                if (remember) {
+                    localStorage.setItem('rememberedEmail', email);
+                }
+                window.location.href = 'https://faeemztec.glitch.me/mainpage.html';
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+
+        // Handle transition between pages
+        function handleTransition() {
+            document.getElementById('welcome-page').classList.add('slide-out');
+            document.getElementById('login-page').classList.add('slide-in');
+        }
+
+        // Add event listeners when document loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for remembered email
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('remember').checked = true;
+            }
+        });
+
+        // Add enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSignIn();
+            }
+        });
+
+        // Check internet connection
+        function checkInternetConnection() {
+            if (!navigator.onLine) {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.game-container').style.display = 'block';
+                initGame();
+            } else {
+                document.querySelector('.login-container').style.display = 'block';
+                document.querySelector('.game-container').style.display = 'none';
+            }
+        }
+
+        // Check connection status when page loads and when it changes
+        window.addEventListener('load', checkInternetConnection);
+        window.addEventListener('online', checkInternetConnection);
+        window.addEventListener('offline', checkInternetConnection);
+      
+      class DinoGame {
+            constructor() {
+                this.dino = document.getElementById('dino');
+                this.gameArea = document.getElementById('gameArea');
+                this.gameContainer = document.getElementById('gameContainer');
+                this.scoreElement = document.getElementById('score');
+                this.gameOverElement = document.getElementById('gameOver');
+                
+                this.isJumping = false;
+                this.isGameOver = false;
+                this.gravity = 0.9;
+                this.position = 0;
+                this.score = 0;
+                
+                this.setupEventListeners();
+                this.checkConnection();
+            }
+
+            setupEventListeners() {
+                document.addEventListener('keyup', (e) => this.control(e));
+                document.addEventListener('touchstart', () => this.handleTouch());
+                window.addEventListener('online', () => this.checkConnection());
+                window.addEventListener('offline', () => this.checkConnection());
+            }
+
+            checkConnection() {
+                if (!navigator.onLine) {
+                    this.gameContainer.style.display = 'block';
+                    if (!this.isGameStarted) {
+                        this.startGame();
+                        this.isGameStarted = true;
+                    }
+                } else {
+                    this.gameContainer.style.display = 'none';
+                    this.isGameStarted = false;
+                }
+            }
+
+            control(e) {
+                if (e.code === 'Space') {
+                    if (!this.isJumping) {
+                        this.isJumping = true;
+                        this.jump();
+                    }
+                    if (this.isGameOver) {
+                        this.resetGame();
+                    }
+                }
+            }
+
+            handleTouch() {
+                if (!this.isJumping) {
+                    this.isJumping = true;
+                    this.jump();
+                }
+                if (this.isGameOver) {
+                    this.resetGame();
+                }
+            }
+
+            jump() {
+                let count = 0;
+                let jumpInterval = setInterval(() => {
+                    // Jump up
+                    if (count === 15) {
+                        clearInterval(jumpInterval);
+                        // Fall down
+                        let fallInterval = setInterval(() => {
+                            if (count === 0) {
+                                clearInterval(fallInterval);
+                                this.isJumping = false;
+                            }
+                            this.position -= 5;
+                            count--;
+                            this.position = this.position * this.gravity;
+                            this.dino.style.bottom = this.position + 'px';
+                        }, 20);
+                    }
+                    this.position += 30;
+                    count++;
+                    this.position = this.position * this.gravity;
+                    this.dino.style.bottom = this.position + 'px';
+                }, 20);
+            }
+
+            generateCactus() {
+                if (this.isGameOver) return;
+
+                const cactus = document.createElement('div');
+                cactus.classList.add('cactus');
+                this.gameArea.appendChild(cactus);
+
+                let cactusPosition = 580;
+                let randomTime = Math.random() * 4000 + 1000;
+
+                let cactusInterval = setInterval(() => {
+                    if (cactusPosition > -20) {
+                        cactusPosition -= 10;
+                        cactus.style.right = this.gameArea.offsetWidth - cactusPosition + 'px';
+
+                        // Collision detection
+                        if (cactusPosition > 0 && cactusPosition < 50 && this.position < 50) {
+                            clearInterval(cactusInterval);
+                            this.gameOverElement.style.display = 'block';
+                            this.isGameOver = true;
+                        }
+                    } else {
+                        clearInterval(cactusInterval);
+                        this.gameArea.removeChild(cactus);
+                        this.score++;
+                        this.scoreElement.textContent = this.score;
+                    }
+                }, 20);
+
+                if (!this.isGameOver) {
+                    setTimeout(() => this.generateCactus(), randomTime);
+                }
+            }
+
+            resetGame() {
+                const cacti = document.querySelectorAll('.cactus');
+                cacti.forEach(cactus => cactus.remove());
+
+                this.isGameOver = false;
+                this.position = 0;
+                this.score = 0;
+                this.scoreElement.textContent = '0';
+                this.dino.style.bottom = '0';
+                this.gameOverElement.style.display = 'none';
+
+                this.generateCactus();
+            }
+
+            startGame() {
+                this.resetGame();
+                this.generateCactus();
+            }
+        }
+
+        // Initialize game when document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const game = new DinoGame();
+        });
+    </script>
+</body>
+</html>

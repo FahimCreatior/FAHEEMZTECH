@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OGLyI4QDjOINdhYaWH-xGNlg1nF6dHANfhzZEeB1r8w" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaheemStream</title>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --accent-color: #e50914;
+            --text-light: #ffffff;
+            --text-dark: #141414;
+            --bg-dark: #0f0f0f;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://cdn.glitch.global/a7498174-0fcc-4e40-8eaa-4769d7d5a587/Inception.jpg?v=1734956673286');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .movie-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-color);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ff0f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg-gradient);
+            border-radius: 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: var(--bg-gradient);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>FaheemStream</h1>
+            <p>Unlimited movies, TV shows, and more. Watch anywhere. Cancel anytime.</p>
+            <a href="https://netfree2.cc/mobile/home" class="btn">Start Watching</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-tv"></i>
+            <h3>Watch on Any Device</h3>
+            <p>Stream on your phone, tablet, laptop, and TV without paying more.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-film"></i>
+            <h3>Unlimited Content</h3>
+            <p>Watch thousands of shows and movies, with new additions every week.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-download"></i>
+            <h3>Download.& Go</h3>
+            <p>Save your data and watch offline on all your favorite devices.</p>
+        </div>
+    </section>
+
+    <div class="movie-grid">
+        <div class="movie-card">
+            <img src="https://cdn.glitch.global/a7498174-0fcc-4e40-8eaa-4769d7d5a587/Inception.jpg?v=1734956673286" alt="Movie 1">
+            <div class="movie-info">
+                <h3>Inception</h3>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://cdn.glitch.global/a7498174-0fcc-4e40-8eaa-4769d7d5a587/Dark%20Knight.jpg?v=1734956794635" alt="Movie 2">
+            <div class="movie-info">
+                <h3>The Dark Knight</h3>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://cdn.glitch.global/a7498174-0fcc-4e40-8eaa-4769d7d5a587/Interstellar.jpg?v=1734956853125" alt="Movie 3">
+            <div class="movie-info">
+                <h3>Interstellar</h3>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://cdn.glitch.global/a7498174-0fcc-4e40-8eaa-4769d7d5a587/Avatar.jpg?v=1734956911026" alt="Movie 4">
+            <div class="movie-info">
+                <h3>Avatar</h3>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <h2>Ready to Watch?</h2>
+        <p>Join millions of subscribers and get unlimited access today.</p>
+        <a href="#" class="btn" style="margin-top: 2rem;">Get Started</a>
+    </section>
+
+    <footer>
+        <p>© 2024 FAHEEMZ. All rights reserved.</p>
+    </footer>
+</body>
+</html>
